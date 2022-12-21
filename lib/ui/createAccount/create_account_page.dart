@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login/ui/createAccount/create_account_controller.dart';
-import 'package:login/ui/login/login_page.dart';
-import 'package:login/utils/style_app.dart';
+import '../../utils/style_app.dart';
+import '../login/login_page.dart';
+import 'create_account_controller.dart';
 
 class CreateAccountPage extends StatelessWidget {
   CreateAccountPage({super.key});

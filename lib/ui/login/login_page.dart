@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login/ui/createAccount/create_account_page.dart';
-import 'package:login/ui/login/login_controller.dart';
-import 'package:login/utils/style_app.dart';
+import '../../utils/style_app.dart';
+import '../createAccount/create_account_page.dart';
+import 'login_controller.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -53,9 +53,9 @@ class LoginPage extends StatelessWidget {
           children: [
             Text("Login", style: TextStyle(color: styleApp.fontText, fontSize: 40, fontWeight: FontWeight.w600)),
             const SizedBox(height: 50),
-            buildTextField(Icons.email, "Email"),
+            buildTextField(controller: loginController.emailController,icon: Icons.email, hintText: "Email"),
             const SizedBox(height: 30),
-            buildTextField(Icons.lock, "Senha", true),
+            buildTextField(controller: loginController.passwordController,icon: Icons.lock, hintText: "Senha", obscure: true),
             const SizedBox(height: 20),
             forgetMyPassword(),
             const SizedBox(height: 50),
@@ -64,7 +64,7 @@ class LoginPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 137, vertical: 20)
               ),
               onPressed: (){ 
-                loginController.formKey.currentState!.validate();
+                loginController.login(context);
               }, 
               child: const Text("Login"), 
             ),
@@ -110,17 +110,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget createAnAccount(BuildContext context){
-    // return InkWell(
-    //   onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAccountPage())),
-    //   child: Row(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     children: [
-    //       Text("Não tem uma conta?", style: TextStyle(color: styleApp.fontText, fontSize: 15, fontWeight: FontWeight.w500)),
-    //       const SizedBox(width: 7),
-    //       const Text("Crie uma conta", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500)),
-    //     ],
-    //   ),
-    // );  
+
     return TextButton(
       onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAccountPage())), 
       child: Row(
@@ -134,8 +124,9 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget buildTextField(IconData icon, String hintText, [bool obscure = false]){
+  Widget buildTextField({required TextEditingController controller ,required IconData icon, required String hintText, bool obscure = false}){
     return TextFormField(
+      controller: controller,
       validator: (value) {
         if(value!.isEmpty){
           return "Ops, você deixou esse campo vazio!";

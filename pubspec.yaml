@@ -15,11 +15,16 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
+  #carousel_slider
+  carousel_slider: ^4.2.1
+
   #RXDART
   rxdart: ^0.27.7
 
   #FIREBASE
   firebase_storage: ^11.0.8
+  firebase_auth: ^4.2.1
+  firebase_core: ^2.3.0
 
 dev_dependencies:
   flutter_test:

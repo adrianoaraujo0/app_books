@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:login/ui/login/login_page.dart';
-import 'package:login/utils/style_app.dart';
+import '../utils/style_app.dart';
+import 'login/login_page.dart';
 
-class TelaInicial extends StatelessWidget {
-  TelaInicial({super.key});
+class InitialPage extends StatelessWidget {
+  InitialPage({super.key});
 
   StyleApp styleApp = StyleApp();
 
