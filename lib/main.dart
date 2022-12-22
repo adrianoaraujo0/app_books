@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:login/ui/initial_page.dart';
-import 'package:login/ui/menu/menu_page.dart';
 
 void main() async{
   
@@ -21,6 +20,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

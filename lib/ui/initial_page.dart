@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/ui/createAccount/create_account_page.dart';
 import '../utils/style_app.dart';
 import 'login/login_page.dart';
 
@@ -47,7 +48,7 @@ class InitialPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: (){},
+                onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAccountPage())),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade400,  padding: const EdgeInsets.symmetric(horizontal: 94, vertical: 20)),
                 child: const Text("Create Account"),
               ),

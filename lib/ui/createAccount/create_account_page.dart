@@ -3,6 +3,7 @@ import '../../utils/style_app.dart';
 import '../login/login_page.dart';
 import 'create_account_controller.dart';
 
+// ignore: must_be_immutable
 class CreateAccountPage extends StatelessWidget {
   CreateAccountPage({super.key});
 
@@ -47,21 +48,25 @@ class CreateAccountPage extends StatelessWidget {
             icon: Icons.person,
             controller: createAccountController.nameController,
             validator: 
-              (value) {
-                if(value!.isEmpty)return "Digite seu nome";
-                return null;
-              },
+            (value) {
+              if(value!.isEmpty){
+                return "Digite seu nome";
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 30),
           buildTextFormField(
             hintText: "Email",
             icon: Icons.email,
             controller: createAccountController.emailController,
+
             validator: 
             (value) {
               if(value!.isEmpty)return "Digite seu email";
               return null;
             },
+            focusNode: createAccountController.myFocusNodes
           ),
           const SizedBox(height: 30),
           buildTextFormField(
@@ -74,6 +79,8 @@ class CreateAccountPage extends StatelessWidget {
                   return "Digite sua senha";
                 }else if(value != createAccountController.confirmPasswordController.text) {
                   return "Senha incompatíveis";
+                }else if(value.length < 6){
+                  return "Insira pelo menos 6 caracteres.";
                 }
                 return null;
               },
@@ -86,9 +93,11 @@ class CreateAccountPage extends StatelessWidget {
             validator: 
               (value) {
                 if(value!.isEmpty) {
-                  return "Digite sua senha";
+                  return "Confirme sua senha";
                 } else if(value != createAccountController.passwordController.text) {
                   return "Senha incompatíveis";
+                }else if(value.length < 6){
+                  return "Insira pelo menos 6 caracteres.";
                 }
                 return null;
               },
@@ -99,12 +108,13 @@ class CreateAccountPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 137, vertical: 20)
             ),
             onPressed: (){ 
-              createAccountController.formKey.currentState!.validate();
+              createAccountController.createAccount(context);
             }, 
-            child: const Text("Login"), 
+            child: const Text("Sign up"), 
           ),
           Expanded(
-            child: Column(mainAxisAlignment: MainAxisAlignment.end,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 signIn(context),
               ],
@@ -115,7 +125,7 @@ class CreateAccountPage extends StatelessWidget {
     );
   }
 
-  Widget buildTextFormField({required IconData icon , required String hintText, required TextEditingController controller, required String? Function(String?)? validator}){
+  Widget buildTextFormField({required IconData icon , required String hintText, required TextEditingController controller, required String? Function(String?)? validator, FocusNode? focusNode }){
     return TextFormField(
       validator: validator,
       decoration: InputDecoration(
@@ -124,6 +134,7 @@ class CreateAccountPage extends StatelessWidget {
         icon: Icon(icon)
       ),
       controller: controller,
+      focusNode: focusNode,
     );
   }
 
