@@ -99,13 +99,16 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget loginWithGoogle(){
-    return Row(
-      children: [
-        Image.asset("assets/images/google.png", height: 30),
-        const SizedBox(width: 10),
-        Text("Login com ", style: TextStyle(color: styleApp.fontText, fontSize: 15, fontWeight: FontWeight.w500)),
-        const Text("Google", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500))
-      ],
+    return InkWell(
+      onTap: () async => loginController.signInWithGoogle(),
+      child: Row(
+        children: [
+          Image.asset("assets/images/google.png", height: 30),
+          const SizedBox(width: 10),
+          Text("Login com ", style: TextStyle(color: styleApp.fontText, fontSize: 15, fontWeight: FontWeight.w500)),
+          const Text("Google", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500))
+        ],
+      ),
     );
   }
 
