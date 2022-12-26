@@ -6,7 +6,6 @@ import 'package:login/ui/menu/menu_page.dart';
 class LoginController{
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -16,10 +15,11 @@ class LoginController{
       formKey.currentState!.validate();
       
      await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then(
-      (value){
+      (value) async{
           if(value.credential != null)return;
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const MenuPage()));
-     });
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MenuPage()));
+      }
+    );
         
     }on FirebaseAuthException catch(e){
 

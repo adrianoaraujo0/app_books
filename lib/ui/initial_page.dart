@@ -6,7 +6,7 @@ import 'login/login_page.dart';
 class InitialPage extends StatelessWidget {
   InitialPage({super.key});
 
-  StyleApp styleApp = StyleApp();
+  final StyleApp styleApp = StyleApp();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class InitialPage extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                child: Text("Welcome to \nYour Library", style: TextStyle(fontSize: 40, color: styleApp.fontText, fontWeight: FontWeight.w600)),
+                child: Text("Welcome to \nlearning", style: TextStyle(fontSize: 40, color: styleApp.fontText, fontWeight: FontWeight.w600), textAlign: TextAlign.center),
               ),
               Image.asset("assets/images/logo.png"),
               const SizedBox(height: 20),
@@ -35,7 +35,7 @@ class InitialPage extends StatelessWidget {
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return LoginPage();
-                  },));
+                  }));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade800, 
