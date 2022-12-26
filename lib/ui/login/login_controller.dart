@@ -17,7 +17,10 @@ class LoginController{
      await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then(
       (value) async{
           if(value.credential != null)return;
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MenuPage()));
+            Navigator.pushAndRemoveUntil(
+              context, MaterialPageRoute(builder: (context) => MenuPage()),
+              (route) => false,
+            );
       }
     );
         
@@ -54,7 +57,12 @@ class LoginController{
       
      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
-}
+  }
+
+  forgetPassword(){
+
+
+  }
 
 
 }

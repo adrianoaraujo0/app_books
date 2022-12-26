@@ -1,13 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:login/models/category.dart';
+import 'package:login/ui/menu/menu_controller.dart';
 
 class MenuPage extends StatelessWidget {
-  const MenuPage({super.key});
+  MenuPage({super.key});
+
+  final MenuController menuController = MenuController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: (){
+              menuController.logout(context);
+            }, 
+            icon: const Icon(Icons.logout))
+        ],
+      ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("highlights").snapshots(),
         builder: (context, snapshot) {

@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
         if(snapshot.data != null){
 
           if(snapshot.hasData){
-            return const MenuPage();
+            return MenuPage();
           }
             return const Center(child: CircularProgressIndicator());
         }
